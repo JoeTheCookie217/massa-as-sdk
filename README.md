@@ -1,48 +1,43 @@
 # Massa-as-sdk
 
-_Massa Assemblyscript SDK_
+![check-code-coverage](https://img.shields.io/badge/coverage-81%25-green)
 
-A collection of tools, objects and functions, specific in usage for Massa smart contracts, in AssemblyScript.
+Massa-as-sdk is a collection of tools, objects, and functions specifically designed for Massa smart contracts in AssemblyScript. This SDK enables you to import object classes, such as address and storage objects, and use them without having to write them from scratch every time. Additionally, it allows you to use Massa's ABI functions.
 
-SDK enables us to import object classes (address, storage objects, etc), and use them without having to write all objects from scratch each time.
+> _Massa-as-sdk is part of the Massa smart contract tooling. To learn more about Massa and its capabilities, visit the [Massa website](https://massa.net)._
 
-It allows you to use Massa's ABI functions.
-
-Complete documentation of all available functions and objects is here:
-
-- [`massa-as-sdk documentation`](https://as-sdk.docs.massa.net)
-
-## To Install
+## Installation
+To use Massa-as-sdk in your AssemblyScript project, simply add it as a dependency:
 
 ```sh
 npm i --save-dev @massalabs/massa-as-sdk
 ```
 
-## To Format
+## Usage
+After installing Massa-as-sdk, you can import the object classes and functions that you need in your AssemblyScript smart contract.
 
-```sh
-npm run fmt
-```
+For example, to use the generateEvent function and generate a "Hello, World!" event, you can import and use it like this:
 
-## To test
-
-```sh
-npm run test
-```
-
-## To generate doc
-
-```sh
-npm run doc
-```
-
-## Example
-
-Here is a smart-contract example generating an event "Hello World" on the blockchain:
-
-```sh
+```typescript
 import { generateEvent } from '@massalabs/massa-as-sdk';
+
+// This main function is called automatically when the smart contract is executed by the blockchain.
+// The function argument is unused and can be safely ignored.
 export function main(_: StaticArray<u8>): void {
-  generateEvent(`Hello World`);
+  generateEvent(`Hello, World!`);
 }
 ```
+
+Similarly, you can use other classes and functions provided by Massa-as-sdk.
+Refer to the [technical documentation](https://as-sdk.docs.massa.net/index.html) for more information.
+
+## Contributing
+We welcome contributions from the community!
+
+If you would like to contribute to Massa-as-sdk, please read the [CONTRIBUTING file](CONTRIBUTING.md).
+
+## License
+Massa-as-sdk is released under the [MIT License](LICENSE).
+
+## Powered By
+Massa-as-sdk is developed with love by MassaLabs and powered by a variety of [open-source projects](powered-by.md).

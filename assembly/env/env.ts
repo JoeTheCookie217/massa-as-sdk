@@ -43,10 +43,13 @@ export namespace env {
   export declare function createSC(bytecode: StaticArray<u8>): string;
 
   @external("massa", "assembly_script_get_keys")
-  export declare function getKeys(): StaticArray<u8>;
+  export declare function getKeys(prefix: StaticArray<u8>): StaticArray<u8>;
 
   @external("massa", "assembly_script_get_keys_for")
-  export declare function getKeysOf(address: string): StaticArray<u8>;
+  export declare function getKeysOf(
+    address: string,
+    prefix: StaticArray<u8>,
+  ): StaticArray<u8>;
 
   @external("massa", "assembly_script_set_data")
   export declare function set(
@@ -133,6 +136,27 @@ export namespace env {
     publicKey: string,
   ): bool;
 
+  @external("massa", "assembly_script_evm_signature_verify")
+  export declare function isEvmSignatureValid(
+    digest: StaticArray<u8>,
+    signature: StaticArray<u8>,
+    publicKey: StaticArray<u8>,
+  ): bool;
+
+  @external("massa", "assembly_script_evm_get_address_from_pubkey")
+  export declare function evmGetAddressFromPubkey(
+    publicKey: StaticArray<u8>,
+  ): StaticArray<u8>;
+
+  @external("massa", "assembly_script_evm_get_pubkey_from_signature")
+  export declare function evmGetPubkeyFromSignature(
+    hash: StaticArray<u8>,
+    signature: StaticArray<u8>,
+  ): StaticArray<u8>;
+
+  @external("massa", "assembly_script_is_address_eoa")
+  export declare function isAddressEoa(address: string): bool;
+
   @external("massa", "assembly_script_address_from_public_key")
   export declare function publicKeyToAddress(publicKey: string): string;
 
@@ -158,6 +182,9 @@ export namespace env {
     filter_key: StaticArray<u8>,
   ): void;
 
+  @external("massa", "assembly_script_get_origin_operation_id")
+  export declare function getOriginOperationId(): string;
+
   @external("massa", "assembly_script_get_current_period")
   export declare function currentPeriod(): u64;
 
@@ -176,6 +203,11 @@ export namespace env {
   @external("massa", "assembly_script_get_op_keys")
   export declare function getOpKeys(): StaticArray<u8>;
 
+  @external("massa", "assembly_script_get_op_keys_prefix")
+  export declare function getOpKeysPrefix(
+    prefix: StaticArray<u8>,
+  ): StaticArray<u8>;
+
   @external("massa", "assembly_script_has_op_key")
   export declare function hasOpKey(key: StaticArray<u8>): StaticArray<u8>;
 
@@ -184,4 +216,10 @@ export namespace env {
 
   @external("massa", "assembly_script_hash_sha256")
   export declare function sha256(bytecode: StaticArray<u8>): StaticArray<u8>;
+
+  @external("massa", "assembly_script_keccak256_hash")
+  export declare function keccak256(data: StaticArray<u8>): StaticArray<u8>;
+
+  @external("massa", "assembly_script_validate_address")
+  export declare function validateAddress(address: string): bool;
 }
